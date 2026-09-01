@@ -1,0 +1,44 @@
+name: gitea
+description: Gitea repository contents HTTP API (GitHub-compatible contents path).
+protocol: http
+auth:
+  type: token
+  allowed: [token, bearer, none]
+  header: Authorization
+  prefix: "token "
+connection:
+  url:
+    required: true
+    description: Gitea base URL
+headers:
+  Accept: application/json
+parameters:
+  - name: owner
+    required: false
+    in: path
+    description: Repo owner. Default is the authenticated user
+  - name: repo
+    required: true
+    in: path
+  - name: branch
+    required: false
+    in: query
+    description: Ref. Default is the repository default branch
+  - name: path_prefix
+    required: false
+    description: Allowed artifact path prefix
+endpoints:
+  user:
+    method: GET
+    path: /api/v1/user
+  repo:
+    method: GET
+    path: /api/v1/repos/{owner}/{repo}
+  contents:
+    method: GET
+    path: /api/v1/repos/{owner}/{repo}/contents/{path}
+    query:
+      - ref
+session_id:
+  from_record:
+    field: artifact.path

@@ -1,0 +1,14 @@
+prerequisites:
+  observability:
+    - name: otel-collector
+      purpose: Receive OTLP; export to trace and metrics backends.
+    - name: prometheus
+      purpose: Metrics when trace usage attributes are incomplete.
+    - name: jaeger
+      purpose: Trace store for outcome, quality, and artifact extraction.
+  tracing:
+    sampling: ${TRACE_SAMPLING:-1.0}
+    note: Use full sampling in lab until tail-based sampling is configured.
+  correlation:
+    required: true
+    note: Caller must inject session_id per designer session_id.trace.

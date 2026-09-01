@@ -1,0 +1,23 @@
+# OOTB eval — architecture POC (software-architect workflow).
+include: ../config/eval-designer.yaml
+
+designer:
+  files:
+    - designer/session_id.yaml
+    - designer/labels.yaml
+    - designer/fetch.yaml
+    - designer/store.yaml
+    - designer/evidence.yaml
+    - designer/worker.yaml
+
+sources:
+  files:
+    - sources/jaeger-traces.yaml
+    - sources/kagent-sessions.yaml
+    - sources/prometheus-metrics.yaml
+    - sources/judge-llm.yaml
+    - sources/git-artifacts.yaml
+
+policies:
+  files:
+    - flows/architecture/policy.yaml

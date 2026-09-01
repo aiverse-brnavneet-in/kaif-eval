@@ -1,0 +1,11 @@
+name: kagent-sessions
+connector: kagent
+tags:
+  - runtime
+  - sessions
+auth:
+  type: none
+connection:
+  url: ${KAGENT_API:-}
+parameters:
+  agent_id: ${KAIF_AGENT_ID:-kagent__NS__software_architect}

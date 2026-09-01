@@ -1,0 +1,19 @@
+# Source template — LLM judge backend.
+name: ${JUDGE_SOURCE_NAME:-judge}
+connector: llm
+tags:
+  - judge
+  - quality
+auth:
+  type: bearer
+  token: ${JUDGE_LLM_TOKEN:-}
+connection:
+  url: ${JUDGE_LLM_URL:-}
+parameters:
+  enabled: true
+  model: ${JUDGE_LLM_MODEL:-}
+  token_limit: ${JUDGE_LLM_TOKEN_LIMIT:-8000}
+  timeout_s: ${JUDGE_LLM_TIMEOUT_S:-120}
+  rates_usd_per_million:
+    input: ${JUDGE_LLM_RATE_IN:-0}
+    output: ${JUDGE_LLM_RATE_OUT:-0}

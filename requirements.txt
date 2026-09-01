@@ -1,0 +1,3 @@
+# kaif-eval local run (Python 3.9+)
+PyYAML>=6.0
+deepeval>=4.2.0

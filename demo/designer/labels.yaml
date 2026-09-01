@@ -1,0 +1,30 @@
+# KAIF architecture POC — label fetch sources.
+labels:
+  - level: 1
+    name: flow
+    fetch:
+      - source: jaeger-traces
+        field: flow
+      - source: kagent-sessions
+        field: flow
+  - level: 2
+    name: scenario
+    fetch:
+      - source: jaeger-traces
+        field: scenario
+      - source: kagent-sessions
+        field: scenario
+  - level: 3
+    name: agent
+    fetch:
+      - source: jaeger-traces
+        field: agent
+      - source: kagent-sessions
+        field: agent
+  - level: 4
+    name: skill
+    fetch:
+      - source: jaeger-traces
+        field: skill
+      - source: kagent-sessions
+        field: skill

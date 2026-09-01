@@ -1,0 +1,153 @@
+# Flow policy: architecture. Included from eval-designer.yaml policies.files.
+# Outcome and quality rules name sources (or tags), never vendor SDKs.
+#
+# failed in this file is stored as unfinished for the kaif-value jobs contract.
+
+name: architecture
+kind: workflow
+
+scenario:
+  - new_architecture
+  - architecture_review
+  - cost_optimization
+  - modernization
+  - technology_selection
+
+skill:
+  - problem-framing
+  - discovery-research
+  - technology-evaluation
+  - solution-architecture
+  - architecture-diagramming
+  - cost-analysis
+  - licensing-analysis
+  - dev-team-guidelines
+  - architecture-document
+
+agents:
+  - name: software-architect
+    runtime:
+      publish_tool: store_report
+      publish_result_field: sha
+      artifact_markdown_field: report_markdown
+      pending_tools:
+        - ask_user
+        - adk_request_confirmation
+    scenario_inference:
+      - name: architecture_review
+        keywords: [review, assess, critique, audit, "existing architecture"]
+      - name: cost_optimization
+        keywords: [cost, tco, capex, opex, budget, optimi]
+      - name: modernization
+        keywords: [migrate, migration, moderni, legacy, re-platform]
+      - name: technology_selection
+        keywords: [evaluate, bake-off, "bake off", compare, " vs ", "which technology"]
+      - name: new_architecture
+        keywords: [design, greenfield, "new system", "architecture for", "build a"]
+    skill_catalog:
+      - problem-framing
+      - discovery-research
+      - technology-evaluation
+      - solution-architecture
+      - architecture-diagramming
+      - cost-analysis
+      - licensing-analysis
+      - dev-team-guidelines
+      - architecture-document
+    rates_usd_per_million:
+      input: 0.25
+      output: 2.0
+    outcomes:
+      success:
+        source: jaeger-traces
+        rules:
+          - tool_result: store_report
+            field: sha
+      pending:
+        source: jaeger-traces
+        rules:
+          - last_tool: ask_user
+          - last_tool: adk_request_confirmation
+          - status: BLOCKED_ON_USER
+      failed:
+        source: jaeger-traces
+    quality:
+      deterministic:
+        - name: published
+          source: jaeger-traces
+          weight: 25
+          field: artifact.sha
+          op: exists
+        - name: notified_user
+          source: jaeger-traces
+          weight: 25
+          field: tools
+          op: any_of
+          value:
+            - ask_user
+            - adk_request_confirmation
+        - name: asked_users_for_feedback
+          source: jaeger-traces
+          weight: 15
+          field: last_tool
+          op: any_of
+          value:
+            - ask_user
+            - adk_request_confirmation
+        - name: tool_calls
+          source: jaeger-traces
+          weight: 15
+          field: tools
+          op: any_of
+          value:
+            - store_report
+            - ask_user
+            - adk_request_confirmation
+            - web_search
+            - firecrawl_search
+        - name: under_allocated_budget_usd_threshold
+          source: jaeger-traces
+          weight: 20
+          field: usd_est
+          op: lte
+          value: 0.001
+      llm_as_judge:
+        enabled: true
+        require_outcome: success
+        source: judge-llm
+        metric: g_eval
+        input:
+          source: jaeger-traces
+          field: markdown
+        field: score
+        op: gte
+        value: 0.5
+        metrics:
+          - name: correctness
+            weight: 25
+            evaluation_steps:
+              - "Check that actual_output includes the required sections: problem, decisions, rejected options, and STATUS"
+              - "Check that actual_output contains at least one architecture diagram (mermaid or equivalent)"
+              - "Heavily penalize omission of required sections or diagrams"
+              - "Vague language is OK if the required artifacts are present"
+          - name: reasoning
+            weight: 25
+            evaluation_steps:
+              - "Check that decisions are justified and rejected options are named with reasons"
+              - "Check that facts vs assumptions are distinguished"
+              - "Check that tradeoffs / TCO appear where relevant"
+              - "Penalize unsupported conclusions and missing evidence URLs for material claims"
+          - name: professionalism
+            weight: 25
+            evaluation_steps:
+              - "Determine whether the actual output maintains a professional architecture-document tone throughout"
+              - "Evaluate if the language reflects expertise and domain-appropriate formality"
+              - "Ensure the actual output stays contextually appropriate and avoids casual or ambiguous expressions"
+              - "Check if the actual output is clear, respectful, and avoids slang or overly informal phrasing"
+          - name: clarity
+            weight: 25
+            evaluation_steps:
+              - "Evaluate whether the response uses clear and direct language"
+              - "Check if headings make the document easy to scan"
+              - "Assess whether complex ideas are presented in a way that is easy to follow"
+              - "Identify any vague or confusing parts that reduce understanding"

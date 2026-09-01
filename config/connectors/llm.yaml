@@ -1,0 +1,36 @@
+name: llm
+description: OpenAI-compatible chat completions HTTP API. Used as the judge backend.
+protocol: http
+auth:
+  type: bearer
+  allowed: [bearer, header, none]
+  header: Authorization
+  prefix: "Bearer "
+connection:
+  url:
+    required: true
+    description: Chat completions endpoint (full URL)
+headers:
+  Accept: application/json
+  Content-Type: application/json
+parameters:
+  - name: model
+    required: true
+  - name: enabled
+    required: false
+    default: true
+  - name: token_limit
+    required: false
+    default: 8000
+  - name: timeout_s
+    required: false
+    default: 120
+  - name: rates_usd_per_million
+    required: false
+endpoints:
+  chat:
+    method: POST
+    path: ""
+session_id:
+  in: header
+  header: ${CORRELATION_HEADER:-}

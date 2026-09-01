@@ -1,0 +1,15 @@
+name: git-artifacts
+connector: gitea
+tags:
+  - published-output
+  - artifacts
+auth:
+  type: token
+  token: ${GITEA_TOKEN:-}
+connection:
+  url: ${GITEA_URL:-}
+parameters:
+  repo: ${GITEA_REPO:-architecture-docs}
+  owner: ${GITEA_OWNER:-}
+  branch: ${GITEA_BRANCH:-}
+  path_prefix: ${GITEA_PATH_PREFIX:-architecture/}

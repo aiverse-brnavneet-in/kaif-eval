@@ -1,0 +1,20 @@
+# POC driver settings — not used by the eval worker. Override via env vars.
+a2a:
+  namespace: ${KAIF_A2A_NAMESPACE:-kagent}
+  service: ${KAIF_A2A_SERVICE:-software-architect}
+  port: ${KAIF_A2A_PORT:-18080}
+jaeger:
+  namespace: ${KAIF_JAEGER_NAMESPACE:-observability}
+  service: ${KAIF_JAEGER_SERVICE_NAME:-jaeger}
+  port: ${KAIF_JAEGER_PORT:-16686}
+kagent:
+  namespace: ${KAIF_KAGENT_NAMESPACE:-kagent}
+  service: ${KAIF_KAGENT_SERVICE:-kagent-controller}
+  port: ${KAIF_KAGENT_PORT:-18083}
+headers:
+  flow: ${KAIF_FLOW:-architecture}
+  agent: ${KAIF_AGENT:-software-architect}
+  scenario: ${KAIF_JOB_SCENARIO:-new_architecture}
+eval_config: demo/eval.yaml
+timeout_s: ${KAIF_JOB_TIMEOUT:-240}
+ingest_wait_s: ${KAIF_TRACE_INGEST_WAIT:-12}

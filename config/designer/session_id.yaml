@@ -1,0 +1,15 @@
+# Template: session / job correlation. Bind trace attributes and headers in demo or env.
+session_id:
+  name: session_id
+  store_as: job_id
+  provided_by: caller
+  aliases:
+    - job_id
+  trace:
+    primary_attribute: ${TRACE_PRIMARY_ATTR:-}
+    fallback_attributes: []
+    inject:
+      header: ${CORRELATION_HEADER:-}
+      span_attribute: ${CORRELATION_SPAN_ATTR:-}
+  fetch:
+    by_connector: {}

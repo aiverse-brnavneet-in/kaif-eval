@@ -1,0 +1,22 @@
+Eval SQLite table `jobs` — product contract with kaif-value.
+
+Columns
+1. job_id TEXT PRIMARY KEY — caller job id (X-Kaif-Run-Id).
+2. outcome TEXT — from eval config: success | pending | unfinished.
+3. started_at TEXT — ISO time. Source is eval.yaml clock.started_at (default kagent).
+4. ended_at TEXT — ISO time. Source is eval.yaml clock.ended_at (default kagent).
+5. labels TEXT JSON — [{level, key, value}, ...] from eval.yaml labels.
+6. evaluation TEXT JSON — types of evaluation, scores, skipped types, status:
+   {
+     "total_score": 76.2,
+     "status": "ok" | "no_traces",
+     "sections": {
+       "deterministic": { "score": 55, "status": "ok", "rules": [{ "name": "published", "pass": true }] },
+       "llm_as_judge": { "score": 97.5, "criteria": [{ "name": "reasoning", "score": 0.9 }] }
+     },
+     "skipped": ["llm_as_judge"],
+     "sources": { "kagent": { "user_turns": 1, "artifact": { "sha": "…" } } }
+   }
+7. spend_in_usd TEXT JSON — token spend from Tempo (or Prometheus) plus eval/judge spend:
+   { "agent": 0.16, "eval": 0.0, "total": 0.16, "tokens_in": 0, "tokens_out": 0, "source": "tempo" }
+8. time_taken_sec REAL — job duration. Source is eval.yaml clock.duration (default tempo; else ended_at − started_at).

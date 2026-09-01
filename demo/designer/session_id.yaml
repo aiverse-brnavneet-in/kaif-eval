@@ -1,0 +1,10 @@
+# KAIF architecture POC — session correlation bindings.
+session_id:
+  trace:
+    primary_attribute: gen_ai.conversation.id
+    fallback_attributes:
+      - kaif.run_id
+      - gen_ai.task.id
+    inject:
+      header: X-Kaif-Run-Id
+      span_attribute: kaif.run_id

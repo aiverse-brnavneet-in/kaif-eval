@@ -1,0 +1,40 @@
+name: prometheus
+description: Prometheus HTTP query API (instant and range PromQL).
+protocol: http
+auth:
+  type: none
+  allowed: [none, bearer, basic, header]
+connection:
+  url:
+    required: true
+    description: Prometheus base URL
+headers:
+  Accept: application/json
+parameters:
+  - name: query
+    required: false
+    in: query
+    description: PromQL. $session_id is replaced at fetch time
+  - name: timeout
+    required: false
+    in: query
+endpoints:
+  instant:
+    method: GET
+    path: /api/v1/query
+    query:
+      - query
+      - time
+      - timeout
+  range:
+    method: GET
+    path: /api/v1/query_range
+    query:
+      - query
+      - start
+      - end
+      - step
+session_id:
+  in: query
+  placeholder: $session_id
+  label: job_id

@@ -1,0 +1,45 @@
+name: jaeger
+description: Jaeger query HTTP API. Lookup traces for one session_id by span tag / attribute.
+protocol: http
+auth:
+  type: none
+  allowed: [none, bearer, basic, header]
+connection:
+  url:
+    required: true
+    description: Jaeger query base URL (UI/query port, typically 16686)
+headers:
+  Accept: application/json
+parameters:
+  - name: attribute
+    required: false
+    description: Primary span tag (defaults to session_id.trace.primary_attribute)
+  - name: search_attributes
+    required: false
+    description: Comma-separated fallback tags
+  - name: service
+    required: false
+    description: Optional single Jaeger service name filter
+  - name: services
+    required: false
+    description: Comma-separated Jaeger service names tried in order
+  - name: lookback_s
+    required: false
+    default: 604800
+endpoints:
+  search:
+    method: GET
+    path: /api/traces
+    query:
+      - tag
+      - service
+      - start
+      - end
+      - limit
+  get:
+    method: GET
+    path: /api/traces/{trace_id}
+session_id:
+  in: query
+  as: tag
+  attribute: ${TRACE_TAG_ATTR:-}

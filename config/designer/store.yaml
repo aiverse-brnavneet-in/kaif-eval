@@ -1,0 +1,36 @@
+# Store template — driver, connection, and schema contract (kaif-value compatible).
+store:
+  driver: ${STORE_DRIVER:-postgres}
+  connection:
+    url: ${EVAL_STORE_URL:-}
+    path: ${EVAL_STORE_PATH:-}
+  schema:
+    contract: kaif-value-v1
+    table: ${STORE_TABLE:-jobs}
+    file: schema/jobs.sql
+    columns:
+      - name: job_id
+        type: TEXT
+        primary_key: true
+        description: Caller session / unique run id
+      - name: outcome
+        type: TEXT
+        description: success | pending | unfinished
+      - name: started_at
+        type: TEXT
+        description: ISO-8601 start time
+      - name: ended_at
+        type: TEXT
+        description: ISO-8601 end time
+      - name: labels
+        type: JSON
+        description: "[{level, key, value}, ...]"
+      - name: evaluation
+        type: JSON
+        description: Quality sections, scores, skipped, sources snapshot
+      - name: spend_in_usd
+        type: JSON
+        description: "{agent, eval, total, tokens_in, tokens_out, source}"
+      - name: time_taken_sec
+        type: REAL
+        description: Job duration in seconds

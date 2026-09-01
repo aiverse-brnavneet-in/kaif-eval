@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kaif-eval"
+version = "0.1.0"
+description = "Batch evaluation of agent jobs — outcome and quality to the kaif-value store"
+requires-python = ">=3.9"
+readme = "README.md"
+dependencies = [
+  "PyYAML>=6.0",
+  "deepeval>=4.2.0",
+]
+
+[project.optional-dependencies]
+postgres = ["psycopg[binary]>=3.1"]
+
+[project.scripts]
+kaif-eval = "app.worker:main"
+
+[tool.setuptools.packages.find]
+include = ["app"]

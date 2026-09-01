@@ -1,0 +1,12 @@
+name: jaeger-traces
+connector: jaeger
+tags:
+  - traces
+  - observability
+auth:
+  type: none
+connection:
+  url: ${JAEGER_URL:-}
+parameters:
+  services: ${JAEGER_SERVICES:-software_architect,software-architect,agentgateway-proxy,market_researcher}
+  lookback_s: 604800

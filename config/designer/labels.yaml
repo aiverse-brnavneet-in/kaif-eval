@@ -1,0 +1,22 @@
+# Template: label dimensions. Add fetch sources in demo overlay (policy defines allowed values).
+labels:
+  - level: 1
+    name: flow
+    define:
+      from: policies
+    fetch: []
+  - level: 2
+    name: scenario
+    define:
+      from_policy_key: scenario
+    fetch: []
+  - level: 3
+    name: agent
+    define:
+      from_policy_key: agent
+    fetch: []
+  - level: 4
+    name: skill
+    define:
+      from_policy_key: skill
+    fetch: []

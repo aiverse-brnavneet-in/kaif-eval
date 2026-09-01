@@ -1,0 +1,1200 @@
+{
+  "uid": "kaif-evals-v2",
+  "title": "KAIF Evals v2",
+  "description": "Quality drill-down from GET /v1/outcomes?dashboard=kaif-evals. Built from value.yaml descriptions.",
+  "tags": [
+    "kaif",
+    "eval",
+    "quality"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "liveNow": false,
+  "weekStart": "",
+  "id": null,
+  "links": [
+    {
+      "title": "KAIF Value v2 (CTO)",
+      "type": "link",
+      "url": "/d/kaif-value-v2",
+      "targetBlank": false,
+      "keepTime": true
+    },
+    {
+      "title": "KAIF LLM cost & budget",
+      "type": "link",
+      "url": "/d/kaif-llm-cost",
+      "targetBlank": false,
+      "keepTime": true
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "templating": {
+    "list": [
+      {
+        "name": "flow",
+        "label": "Flow",
+        "type": "query",
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "kaif-value-api"
+        },
+        "includeAll": true,
+        "allValue": ".*",
+        "multi": false,
+        "refresh": 1,
+        "sort": 1,
+        "hide": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "options": [],
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "KAIF Value API- (infinity) json",
+        "query": {
+          "queryType": "infinity",
+          "query": "",
+          "infinityQuery": {
+            "refId": "variable",
+            "type": "json",
+            "source": "url",
+            "format": "table",
+            "parser": "backend",
+            "uql": "",
+            "root_selector": "values",
+            "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/label-values?key=flow",
+            "url_options": {
+              "method": "GET",
+              "data": ""
+            },
+            "columns": [
+              {
+                "selector": "value",
+                "text": "__text",
+                "type": "string"
+              },
+              {
+                "selector": "value",
+                "text": "__value",
+                "type": "string"
+              }
+            ],
+            "filters": [],
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "kaif-value-api"
+            }
+          }
+        }
+      },
+      {
+        "name": "scenario",
+        "label": "Scenario",
+        "type": "query",
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "kaif-value-api"
+        },
+        "includeAll": true,
+        "allValue": ".*",
+        "multi": false,
+        "refresh": 1,
+        "sort": 1,
+        "hide": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "options": [],
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "KAIF Value API- (infinity) json",
+        "query": {
+          "queryType": "infinity",
+          "query": "",
+          "infinityQuery": {
+            "refId": "variable",
+            "type": "json",
+            "source": "url",
+            "format": "table",
+            "parser": "backend",
+            "uql": "",
+            "root_selector": "values",
+            "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/label-values?key=scenario&flow=${flow}",
+            "url_options": {
+              "method": "GET",
+              "data": ""
+            },
+            "columns": [
+              {
+                "selector": "value",
+                "text": "__text",
+                "type": "string"
+              },
+              {
+                "selector": "value",
+                "text": "__value",
+                "type": "string"
+              }
+            ],
+            "filters": [],
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "kaif-value-api"
+            }
+          }
+        }
+      },
+      {
+        "name": "agent",
+        "label": "Agents",
+        "type": "query",
+        "datasource": {
+          "type": "yesoreyeram-infinity-datasource",
+          "uid": "kaif-value-api"
+        },
+        "includeAll": true,
+        "allValue": ".*",
+        "multi": true,
+        "refresh": 1,
+        "sort": 1,
+        "hide": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "options": [],
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "definition": "KAIF Value API- (infinity) json",
+        "query": {
+          "queryType": "infinity",
+          "query": "",
+          "infinityQuery": {
+            "refId": "variable",
+            "type": "json",
+            "source": "url",
+            "format": "table",
+            "parser": "backend",
+            "uql": "",
+            "root_selector": "values",
+            "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/label-values?key=agent&flow=${flow}&scenario=${scenario}",
+            "url_options": {
+              "method": "GET",
+              "data": ""
+            },
+            "columns": [
+              {
+                "selector": "value",
+                "text": "__text",
+                "type": "string"
+              },
+              {
+                "selector": "value",
+                "text": "__value",
+                "type": "string"
+              }
+            ],
+            "filters": [],
+            "datasource": {
+              "type": "yesoreyeram-infinity-datasource",
+              "uid": "kaif-value-api"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "",
+      "transparent": true,
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**Identity:** Published + Incomplete + Waiting = Jobs. **Quality** is published work only (same as KAIF Value). **Completion / Failure** are shares of Jobs; waiting is not failure. Panels and dropdowns are built from `value.yaml` descriptions \u2192 `GET /v1/outcomes?dashboard=kaif-evals`."
+      }
+    },
+    {
+      "id": 2,
+      "type": "row",
+      "title": "Jobs in this filter",
+      "collapsed": false,
+      "panels": [],
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      }
+    },
+    {
+      "id": 10,
+      "type": "stat",
+      "title": "Jobs",
+      "description": "What: How many eval jobs ran in the window.\nUse: Denominator. Published + Incomplete + Waiting = Jobs.\nShow as: count (single number).\nUnit: jobs.",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Jobs",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "Jobs",
+              "text": "Jobs",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Jobs",
+          "values": true
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "text": {
+          "titleSize": 12,
+          "valueSize": 22
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 11,
+      "type": "stat",
+      "title": "Published",
+      "description": "What: Jobs that published an artifact (outcome = success).\nUse: Numerator of completion rate. Volume of shipped evals.\nShow as: count (single number).\nUnit: jobs.",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 3,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Published",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "Published",
+              "text": "Published",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Published",
+          "values": true
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "text": {
+          "titleSize": 12,
+          "valueSize": 22
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "green"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 12,
+      "type": "stat",
+      "title": "Incomplete",
+      "description": "What: Jobs that ended unfinished (not waiting on a human).\nUse: Numerator of failure rate. Work that died without a publish.\nShow as: count (single number).\nUnit: jobs.",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 3,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Incomplete",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "Incomplete",
+              "text": "Incomplete",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Incomplete",
+          "values": true
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "text": {
+          "titleSize": 12,
+          "valueSize": 22
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0.0
+              },
+              {
+                "color": "orange",
+                "value": 1.0
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 2.0
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 13,
+      "type": "stat",
+      "title": "Waiting",
+      "description": "What: Jobs waiting on a human (HITL).\nUse: Backlog, not failure. Not in failure rate.\nShow as: count (single number).\nUnit: jobs.",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 3,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Waiting",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "Waiting",
+              "text": "Waiting",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Waiting",
+          "values": true
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "text": {
+          "titleSize": 12,
+          "valueSize": 22
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0.0
+              },
+              {
+                "color": "blue",
+                "value": 1.0
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "type": "row",
+      "title": "Quality and rates (same Jobs denominator)",
+      "collapsed": false,
+      "panels": [],
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      }
+    },
+    {
+      "id": 14,
+      "type": "stat",
+      "title": "Quality of published work",
+      "description": "What: Average quality of jobs that published. Unfinished jobs are not in this average. Same definition as KAIF Value.\nUse: The bar for shipped eval artifacts.\nShow as: mean (single number).\nUnit: score (0\u2013100).",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 8,
+        "h": 5
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Quality%20of%20published%20work",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "Quality of published work",
+              "text": "Quality of published work",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Quality of published work",
+          "values": true
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "text": {
+          "titleSize": 14,
+          "valueSize": 36
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 50.0
+              },
+              {
+                "color": "green",
+                "value": 80.0
+              }
+            ]
+          },
+          "unit": "none",
+          "decimals": 1,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 15,
+      "type": "stat",
+      "title": "Completion rate",
+      "description": "What: Published \u00f7 Jobs.\nUse: Share of evals that shipped. Waiting is not in the numerator.\nShow as: rate (single number, 0\u20131). UI may display as percent.\nUnit: ratio (0\u20131).",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 8,
+        "w": 8,
+        "h": 5
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Completion%20rate",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "Completion rate",
+              "text": "Completion rate",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Completion rate",
+          "values": true
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "text": {
+          "titleSize": 14,
+          "valueSize": 36
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 0.5
+              },
+              {
+                "color": "green",
+                "value": 0.8
+              }
+            ]
+          },
+          "unit": "percentunit",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 16,
+      "type": "stat",
+      "title": "Failure rate",
+      "description": "What: Incomplete \u00f7 Jobs.\nUse: Share of evals that died unfinished. Higher is worse. Waiting is excluded.\nShow as: rate (single number, 0\u20131). UI may display as percent.\nUnit: ratio (0\u20131).",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 8,
+        "w": 8,
+        "h": 5
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Failure%20rate",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "Failure rate",
+              "text": "Failure rate",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "Failure rate",
+          "values": true
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard",
+        "text": {
+          "titleSize": 14,
+          "valueSize": 36
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0.0
+              },
+              {
+                "color": "orange",
+                "value": 0.2
+              },
+              {
+                "color": "semi-dark-red",
+                "value": 0.5
+              }
+            ]
+          },
+          "unit": "percentunit",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "row",
+      "title": "Quality trends (moving average by metric)",
+      "collapsed": false,
+      "panels": [],
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      }
+    },
+    {
+      "id": 17,
+      "type": "timeseries",
+      "title": "Deterministic: pass moving average",
+      "description": "What: For each named deterministic check, the expanding mean of pass (1) vs fail (0).\nUse: Is a given check getting healthier or sicker? Rising means that check is passing more often.\nShow as: moving average, one series per check name. Plot pass as stored (do not invert to fail-rate).\nUnit: pass rate (0\u20131).",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "Deterministic: pass moving average",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=Deterministic%3A%20pass%20moving%20average",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "t",
+              "text": "Time",
+              "type": "number"
+            },
+            {
+              "selector": "metric",
+              "text": "metric",
+              "type": "string"
+            },
+            {
+              "selector": "ma",
+              "text": "Value",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "targetField": "Time",
+                "destinationType": "time"
+              }
+            ]
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "metric"
+            ],
+            "keepFields": false,
+            "naming": {
+              "asLabels": false
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "barAlignment": 0,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "spanNulls": true,
+            "insertNulls": false,
+            "showPoints": "always",
+            "pointSize": 10,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisGridShow": true,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "lineStyle": {
+              "fill": "solid"
+            }
+          },
+          "min": 0.0,
+          "max": 1.0,
+          "decimals": 0,
+          "unit": "percentunit",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 18,
+      "type": "timeseries",
+      "title": "LLM as judge: score moving average",
+      "description": "What: For each named G-Eval criterion, the expanding mean of the judge score as stored (0\u20131).\nUse: Track correctness, reasoning, professionalism, clarity independently. Jobs with no judge score are omitted.\nShow as: moving average, one series per criterion.\nUnit: score (0\u20131).",
+      "datasource": {
+        "type": "yesoreyeram-infinity-datasource",
+        "uid": "kaif-value-api"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "kaif-value-api"
+          },
+          "refId": "A",
+          "type": "json",
+          "source": "url",
+          "format": "table",
+          "parser": "backend",
+          "uql": "",
+          "root_selector": "LLM as judge: score moving average",
+          "url": "http://kaif-value-exporter.observability.svc.cluster.local:8000/v1/outcomes?from=${__from}&to=${__to}&flow=${flow}&scenario=${scenario}&agent=${agent}&dashboard=kaif-evals&name=LLM%20as%20judge%3A%20score%20moving%20average",
+          "url_options": {
+            "method": "GET",
+            "data": ""
+          },
+          "columns": [
+            {
+              "selector": "t",
+              "text": "Time",
+              "type": "number"
+            },
+            {
+              "selector": "metric",
+              "text": "metric",
+              "type": "string"
+            },
+            {
+              "selector": "ma",
+              "text": "Value",
+              "type": "number"
+            }
+          ],
+          "filters": []
+        }
+      ],
+      "transformations": [
+        {
+          "id": "convertFieldType",
+          "options": {
+            "conversions": [
+              {
+                "targetField": "Time",
+                "destinationType": "time"
+              }
+            ]
+          }
+        },
+        {
+          "id": "partitionByValues",
+          "options": {
+            "fields": [
+              "metric"
+            ],
+            "keepFields": false,
+            "naming": {
+              "asLabels": false
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "barAlignment": 0,
+            "lineInterpolation": "smooth",
+            "lineWidth": 3,
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "spanNulls": true,
+            "insertNulls": false,
+            "showPoints": "always",
+            "pointSize": 10,
+            "stacking": {
+              "mode": "none",
+              "group": "A"
+            },
+            "axisPlacement": "auto",
+            "axisLabel": "",
+            "axisColorMode": "text",
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisGridShow": true,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "hideFrom": {
+              "tooltip": false,
+              "viz": false,
+              "legend": false
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            },
+            "lineStyle": {
+              "fill": "solid"
+            }
+          },
+          "min": 0.0,
+          "max": 1.0,
+          "decimals": 0,
+          "unit": "percentunit",
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true,
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    }
+  ]
+}

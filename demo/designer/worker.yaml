@@ -1,0 +1,8 @@
+# Architecture POC — on-demand worker (CLI / run-job driver).
+worker:
+  mode: on_demand
+  trigger:
+    type: manual
+  ingest:
+    wait_s: 12
+    jaeger_retries: 6

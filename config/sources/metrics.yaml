@@ -1,0 +1,11 @@
+# Source template — Prometheus metrics.
+name: ${METRICS_SOURCE_NAME:-metrics}
+connector: prometheus
+tags:
+  - metrics
+auth:
+  type: none
+connection:
+  url: ${METRICS_URL:-}
+parameters:
+  query: ${METRICS_QUERY:-}

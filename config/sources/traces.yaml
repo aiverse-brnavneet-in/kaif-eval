@@ -1,0 +1,16 @@
+# Source template — traces (Jaeger). Name and URL are bound in demo overlay.
+name: ${TRACES_SOURCE_NAME:-traces}
+connector: jaeger
+tags:
+  - traces
+  - observability
+auth:
+  type: none
+connection:
+  url: ${TRACES_URL:-}
+parameters:
+  attribute: ${TRACE_PRIMARY_ATTR:-}
+  search_attributes: ${TRACE_SEARCH_ATTRS:-}
+  service: ${TRACES_SERVICE:-}
+  services: ${TRACES_SERVICES:-}
+  lookback_s: ${TRACES_LOOKBACK_S:-604800}

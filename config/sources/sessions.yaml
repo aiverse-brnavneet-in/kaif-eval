@@ -1,0 +1,12 @@
+# Source template — agent sessions (kagent). Name and URL are bound in demo overlay.
+name: ${SESSIONS_SOURCE_NAME:-sessions}
+connector: kagent
+tags:
+  - runtime
+  - sessions
+auth:
+  type: none
+connection:
+  url: ${SESSIONS_URL:-}
+parameters:
+  agent_id: ${SESSIONS_AGENT_ID:-}

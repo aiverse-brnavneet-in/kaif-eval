@@ -1,0 +1,4 @@
+# Template: per-connector session_id fetch bindings (empty — fill in demo overlay).
+session_id:
+  fetch:
+    by_connector: {}

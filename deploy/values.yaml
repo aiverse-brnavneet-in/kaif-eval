@@ -1,0 +1,43 @@
+# Helm knobs. Eval config is staged from config/ + optional demo/ by install.py.
+
+fullnameOverride: kaif-eval-worker
+
+image:
+  repository: python
+  tag: "3.13-slim"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  enabled: false
+  port: 8080
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+evalStore:
+  url: ""
+  existingSecret:
+    name: kaif-eval-store
+    key: url
+
+config:
+  path: /etc/kaif-eval/eval.yaml
+  useDemo: true
+
+connectors:
+  jaegerUrl: ""
+  prometheusUrl: ""
+  kagentApi: ""
+
+judge:
+  llmUrl: ""
+  existingSecret:
+    name: kaif-eval-judge
+    key: api_key

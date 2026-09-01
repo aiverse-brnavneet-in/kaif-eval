@@ -1,0 +1,29 @@
+# Worker job configuration — how eval runs are scheduled and triggered.
+worker:
+  mode: ${WORKER_MODE:-on_demand}
+  poll:
+    interval_s: ${WORKER_POLL_INTERVAL_S:-}
+    cron: ${WORKER_CRON:-}
+    timezone: ${WORKER_TIMEZONE:-UTC}
+  trigger:
+    type: ${WORKER_TRIGGER:-manual}
+    manual:
+      description: CLI or API passes job_id per invocation
+    webhook:
+      enabled: ${WORKER_WEBHOOK_ENABLED:-false}
+      path: ${WORKER_WEBHOOK_PATH:-/v1/eval/run}
+      method: POST
+    event:
+      source: ${WORKER_EVENT_SOURCE:-}
+      types: []
+      filter: ${WORKER_EVENT_FILTER:-}
+    kubernetes:
+      watch: ${WORKER_K8S_WATCH:-}
+      namespace: ${WORKER_K8S_NAMESPACE:-}
+  concurrency: ${WORKER_CONCURRENCY:-1}
+  retry:
+    max_attempts: ${WORKER_RETRY_MAX:-3}
+    backoff_s: ${WORKER_RETRY_BACKOFF_S:-30}
+  ingest:
+    wait_s: ${WORKER_TRACE_INGEST_WAIT_S:-12}
+    jaeger_retries: ${WORKER_JAEGER_RETRIES:-6}

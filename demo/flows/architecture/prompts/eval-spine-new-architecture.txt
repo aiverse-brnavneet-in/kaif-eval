@@ -1,0 +1,28 @@
+Catalog scenario: new_architecture.
+
+You are the software architect for KAIF (Kubernetes Agentic AI Fabric). Design a greenfield architecture for an in-cluster **agent eval spine**: after each architecture-agent job, a worker scores the published markdown (deterministic checks + DeepEval G-Eval named metrics) and a small exporter serves Grafana (job quality, completion/failure, per-metric G-Eval).
+
+## Locked constraints (do not ask the user; do not call ask_user)
+- Cluster: Rancher Desktop now, small managed Kubernetes later (EKS/GKE/AKS).
+- Region / residency: eu-central-1. No multi-region in v1.
+- Tenancy: one platform team, one business flow (`architecture`).
+- Data: job store is SQLite in the lab, Postgres later. No third-party eval SaaS; judge traffic stays on the existing in-cluster OpenAI-compatible gateway.
+- v1 scope: batch worker + SQLite + Prometheus/JSON exporter + Grafana. Not a real-time mesh, not multi-cluster.
+
+## What the document MUST contain (Gitea markdown)
+Headings covering: **problem**, **decisions**, **rejected options**, and **STATUS**.
+At least one **mermaid** architecture diagram (context or container).
+Bake-off: at least two options (e.g. DeepEval G-Eval vs a custom judge prompt vs an eval SaaS) with a chosen default and rejection reasons.
+Facts vs assumptions, labeled. Evidence: at least two `https://` URLs (use web_search or firecrawl_search; date-stamp volatile facts).
+Tradeoffs / TCO: order-of-magnitude lab vs small-cluster cost (LLM judge tokens vs cluster CPU). You may keep TCO qualitative if scripts fail.
+End with STATUS: PUBLISHED and the Gitea sha/url.
+
+## Tools
+1. skills(command="architecture-document") then follow SKILL.md. You may skip the other skills if that delays publish.
+2. One web_search or firecrawl_search for DeepEval G-Eval (https URL in the evidence section).
+3. Do **not** use write_file. Pass the full markdown as the body of store_report.
+   Allowed work dir if you must write is only /tmp/kagent/<this-session-id>/.
+4. store_report to repo_name "architecture-docs", report_path "architecture/eval-spine-<YYYYMMDD>.md".
+5. store_run_record with flow=architecture, agent=software-architect, scenario=new_architecture, status=PUBLISHED, artifact sha/url/path from store_report. Do not invent sha.
+
+Publish this turn. Do not block on HITL. Do not run long TCO scripts.

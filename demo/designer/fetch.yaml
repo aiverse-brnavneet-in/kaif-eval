@@ -1,0 +1,21 @@
+# KAIF architecture POC — per-connector session_id fetch bindings.
+session_id:
+  fetch:
+    by_connector:
+      kagent:
+        param: session_id
+      jaeger:
+        attribute: gen_ai.conversation.id
+        search_attributes: gen_ai.conversation.id,kaif.run_id,gen_ai.task.id
+      prometheus:
+        placeholder: $session_id
+        label: job_id
+      gitea:
+        from_record:
+          source: kagent-sessions
+          field: artifact.path
+      llm:
+        header: X-Kaif-Run-Id
+      api:
+        header: X-Kaif-Run-Id
+        placeholder: $session_id

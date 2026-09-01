@@ -1,0 +1,1241 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [
+    {
+      "title": "KAIF Value (illustration)",
+      "type": "link",
+      "url": "/d/kaif-value-blog",
+      "targetBlank": false
+    },
+    {
+      "title": "KAIF LLM cost & budget (illustration)",
+      "type": "link",
+      "url": "/d/kaif-llm-cost-blog",
+      "targetBlank": false
+    },
+    {
+      "title": "KAIF LLM KPIs (illustration)",
+      "type": "link",
+      "url": "/d/kaif-llm-kpis-blog",
+      "targetBlank": false
+    },
+    {
+      "title": "KAIF LLM routing & failover (illustration)",
+      "type": "link",
+      "url": "/d/kaif-llm-routing-blog",
+      "targetBlank": false
+    }
+  ],
+  "liveNow": false,
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "",
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**SYNTHETIC illustration** \u2014 not live rancher-desktop data. **Flow** architecture \u00b7 **Agent** software-architect \u00b7 **Status** PUBLISHED \u00b7 **Window** 14 days\n\nDrill **Flow \u2192 Scenario \u2192 Agent \u2192 Skill**. Layer A (0\u2013100 on the Gitea artifact): published 25 \u00b7 sections 15 \u00b7 diagram 10 \u00b7 score-matrix 10 \u00b7 TCO 10 \u00b7 evidence 10 \u00b7 fact/assumption 10 \u00b7 STATUS 10. **Gap** = max \u2212 score: that is the improvement backlog. Tallest gap here is **tco_script** (cost model not run on non-cost scenarios)."
+      },
+      "transparent": true
+    },
+    {
+      "id": 2,
+      "type": "row",
+      "title": "Quality at this filter",
+      "collapsed": false,
+      "panels": [],
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Jobs",
+      "description": "Run cards matching the illustration filter (PUBLISHED).",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "vector(18)",
+          "refId": "A",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Mean quality (all)",
+      "description": "sum(Layer A) / jobs in filter. Filter is PUBLISHED, so this equals published quality.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "vector(78)",
+          "refId": "A",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 40
+              },
+              {
+                "color": "green",
+                "value": 70
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Mean quality (published)",
+      "description": "Layer A on PUBLISHED|APPROVED only.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "vector(78)",
+          "refId": "A",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 40
+              },
+              {
+                "color": "green",
+                "value": 70
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Published jobs",
+      "description": "status in {PUBLISHED, APPROVED}.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "vector(18)",
+          "refId": "A",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "QAS",
+      "description": "sum(Layer A on published) / 100. Matches Value illustration 14.04.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "vector(14.04)",
+          "refId": "A",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 2
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "type": "stat",
+      "title": "Jobs missing a publish",
+      "description": "INCOMPLETE in this filter. 0 because Status=PUBLISHED.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "vector(0)",
+          "refId": "A",
+          "instant": true
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "type": "row",
+      "title": "Where to improve (Layer A checks)",
+      "collapsed": false,
+      "panels": [],
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      }
+    },
+    {
+      "id": 10,
+      "type": "barchart",
+      "title": "Mean points vs check (this filter)",
+      "description": "sum(layer_a) / 18 published jobs. Ceiling is the Check ceiling panel.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(25.0), \"series\", \"published\", \"\", \"\")",
+          "refId": "A",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(13.5), \"series\", \"required_sections\", \"\", \"\")",
+          "refId": "B",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(7.2), \"series\", \"diagram\", \"\", \"\")",
+          "refId": "C",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(6.1), \"series\", \"score_matrix_script\", \"\", \"\")",
+          "refId": "D",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(4.4), \"series\", \"tco_script\", \"\", \"\")",
+          "refId": "E",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(8.3), \"series\", \"evidence_urls\", \"\", \"\")",
+          "refId": "F",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(5.6), \"series\", \"fact_vs_assumption\", \"\", \"\")",
+          "refId": "G",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(7.9), \"series\", \"status_contract\", \"\", \"\")",
+          "refId": "H",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none"
+          },
+          "unit": "short",
+          "decimals": 1
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single"
+        },
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "xTickLabelRotation": 0
+      }
+    },
+    {
+      "id": 11,
+      "type": "barchart",
+      "title": "Gap left on the table (points)",
+      "description": "sum(max \u2212 score) across 18 jobs. Tallest bar = first engineering fix (tco_script).",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0), \"series\", \"published\", \"\", \"\")",
+          "refId": "A",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(27), \"series\", \"required_sections\", \"\", \"\")",
+          "refId": "B",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(50), \"series\", \"diagram\", \"\", \"\")",
+          "refId": "C",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(70), \"series\", \"score_matrix_script\", \"\", \"\")",
+          "refId": "D",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(101), \"series\", \"tco_script\", \"\", \"\")",
+          "refId": "E",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(31), \"series\", \"evidence_urls\", \"\", \"\")",
+          "refId": "F",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(79), \"series\", \"fact_vs_assumption\", \"\", \"\")",
+          "refId": "G",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(38), \"series\", \"status_contract\", \"\", \"\")",
+          "refId": "H",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none"
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single"
+        },
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "xTickLabelRotation": 0
+      }
+    },
+    {
+      "id": 12,
+      "type": "barchart",
+      "title": "% of jobs scoring 0 on the check",
+      "description": "check_zero_jobs / jobs. 56% on tco_script: cost model only runs on cost_optimization.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 17
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.0), \"series\", \"published\", \"\", \"\")",
+          "refId": "A",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.06), \"series\", \"required_sections\", \"\", \"\")",
+          "refId": "B",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.28), \"series\", \"diagram\", \"\", \"\")",
+          "refId": "C",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.39), \"series\", \"score_matrix_script\", \"\", \"\")",
+          "refId": "D",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.56), \"series\", \"tco_script\", \"\", \"\")",
+          "refId": "E",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.17), \"series\", \"evidence_urls\", \"\", \"\")",
+          "refId": "F",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.44), \"series\", \"fact_vs_assumption\", \"\", \"\")",
+          "refId": "G",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(0.22), \"series\", \"status_contract\", \"\", \"\")",
+          "refId": "H",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none"
+          },
+          "unit": "percentunit",
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single"
+        },
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "xTickLabelRotation": 0
+      }
+    },
+    {
+      "id": 13,
+      "type": "barchart",
+      "title": "Check ceiling (max points)",
+      "description": "Layer A weights. Gap = ceiling \u2212 mean.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 17
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(25), \"series\", \"published\", \"\", \"\")",
+          "refId": "A",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(15), \"series\", \"required_sections\", \"\", \"\")",
+          "refId": "B",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(10), \"series\", \"diagram\", \"\", \"\")",
+          "refId": "C",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(10), \"series\", \"score_matrix_script\", \"\", \"\")",
+          "refId": "D",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(10), \"series\", \"tco_script\", \"\", \"\")",
+          "refId": "E",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(10), \"series\", \"evidence_urls\", \"\", \"\")",
+          "refId": "F",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(10), \"series\", \"fact_vs_assumption\", \"\", \"\")",
+          "refId": "G",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(10), \"series\", \"status_contract\", \"\", \"\")",
+          "refId": "H",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none"
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single"
+        },
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "xTickLabelRotation": 0
+      }
+    },
+    {
+      "id": 14,
+      "type": "row",
+      "title": "Drill: scenario / agent / skill",
+      "collapsed": false,
+      "panels": [],
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 25
+      }
+    },
+    {
+      "id": 15,
+      "type": "barchart",
+      "title": "Mean quality by scenario",
+      "description": "Where the flow is weak. Weighted mean 78.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 26
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(81), \"series\", \"new_architecture\", \"\", \"\")",
+          "refId": "A",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(76), \"series\", \"technology_selection\", \"\", \"\")",
+          "refId": "B",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(75), \"series\", \"cost_optimization\", \"\", \"\")",
+          "refId": "C",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none"
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single"
+        },
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "xTickLabelRotation": 0
+      }
+    },
+    {
+      "id": 16,
+      "type": "barchart",
+      "title": "Mean quality by agent",
+      "description": "Which agent is leaving points.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 26
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(79), \"series\", \"software-architect\", \"\", \"\")",
+          "refId": "A",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(61), \"series\", \"platform-reviewer\", \"\", \"\")",
+          "refId": "B",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none"
+          },
+          "unit": "short",
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single"
+        },
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "xTickLabelRotation": 0
+      }
+    },
+    {
+      "id": 17,
+      "type": "barchart",
+      "title": "Mean quality by skill (last-used)",
+      "description": "Last catalog skill stamped from the session. unknown = never loaded a skill.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 26
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(983/12), \"series\", \"technology-evaluation\", \"\", \"\")",
+          "refId": "A",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(75), \"series\", \"cost-analysis\", \"\", \"\")",
+          "refId": "B",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "expr": "label_replace(vector(121/2), \"series\", \"unknown\", \"\", \"\")",
+          "refId": "C",
+          "instant": true,
+          "legendFormat": "{{series}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none"
+          },
+          "unit": "short",
+          "decimals": 1
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single"
+        },
+        "barWidth": 0.7,
+        "groupWidth": 0.7,
+        "xTickLabelRotation": 0
+      }
+    },
+    {
+      "id": 18,
+      "type": "text",
+      "title": "Ledger grain: flow / scenario / agent / skill / status",
+      "description": "Synthetic rows. Live board is a Prom table at this cardinality.",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**Ledger grain (synthetic)** \u2014 quality sum = 1\u202f404 = 18 \u00d7 78 = QAS 14.04 \u00d7 100. Job counts match Value publishes (8 / 6 / 4).\n\n| flow | scenario | agent | skill | status | jobs | mean | quality sum |\n|---|---|---|---|---|---:|---:|---:|\n| architecture | new_architecture | software-architect | technology-evaluation | PUBLISHED | 7 | 84 | 588 |\n| architecture | new_architecture | software-architect | unknown | PUBLISHED | 1 | 60 | 60 |\n| architecture | technology_selection | software-architect | technology-evaluation | PUBLISHED | 5 | 79 | 395 |\n| architecture | technology_selection | platform-reviewer | unknown | PUBLISHED | 1 | 61 | 61 |\n| architecture | cost_optimization | software-architect | cost-analysis | PUBLISHED | 4 | 75 | 300 |\n| | **total** | | | | **18** | **78** | **1404** |\n"
+      }
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [
+    "kaif",
+    "eval",
+    "quality",
+    "illustration"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-14d",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": true
+  },
+  "timezone": "browser",
+  "title": "KAIF Evals (illustration)",
+  "uid": "kaif-evals-blog",
+  "description": "SYNTHETIC illustration (UID kaif-evals-blog). Not live rancher-desktop data. 18 PUBLISHED jobs, mean Layer A 78, QAS 14.04. First gap: tco_script.",
+  "weekStart": ""
+}

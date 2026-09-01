@@ -1,0 +1,30 @@
+# Evidence roles — map logical roles to source *names* (set in overlay).
+evidence:
+  runtime: ${EVIDENCE_RUNTIME_SOURCE:-}
+  traces: ${EVIDENCE_TRACES_SOURCE:-}
+  metrics: ${EVIDENCE_METRICS_SOURCE:-}
+  artifacts: ${EVIDENCE_ARTIFACTS_SOURCE:-}
+  judge: ${EVIDENCE_JUDGE_SOURCE:-}
+
+clock:
+  started_at: ${CLOCK_STARTED_SOURCE:-}
+  ended_at: ${CLOCK_ENDED_SOURCE:-}
+  duration: ${CLOCK_DURATION_SOURCE:-}
+
+spend:
+  tokens: ${SPEND_TOKENS_SOURCE:-}
+
+judge:
+  backend: ${JUDGE_BACKEND:-deepeval}
+  source: ${EVIDENCE_JUDGE_SOURCE:-}
+
+inheritance:
+  order:
+    - agent
+    - workflow
+    - global
+
+outcome_classes:
+  success: required work completed
+  pending: waiting on a person
+  failed: failed or unfinished

@@ -1,0 +1,19 @@
+# Architecture POC — evidence role bindings.
+evidence:
+  runtime: kagent-sessions
+  traces: jaeger-traces
+  metrics: prometheus-metrics
+  artifacts: git-artifacts
+  judge: judge-llm
+
+clock:
+  started_at: kagent-sessions
+  ended_at: kagent-sessions
+  duration: jaeger-traces
+
+spend:
+  tokens: jaeger-traces
+
+judge:
+  backend: deepeval
+  source: judge-llm

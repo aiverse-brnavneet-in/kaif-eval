@@ -1,0 +1,4 @@
+# Global shim — prefer designer modules (evidence, store, worker) in eval-designer.yaml.
+# Kept for include compatibility; new overlays should use designer/*.yaml.
+
+include: eval-designer.yaml

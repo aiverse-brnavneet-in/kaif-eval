@@ -1,0 +1,30 @@
+name: kagent
+description: Kubernetes agent control plane HTTP API (sessions, tools, wait-state).
+protocol: http
+auth:
+  type: none
+  allowed: [none, bearer, token]
+connection:
+  url:
+    required: true
+    description: Base URL of the kagent controller
+headers:
+  Accept: application/json
+parameters:
+  - name: agent_id
+    required: true
+    in: query
+    description: kagent Agent resource id
+  - name: user_id
+    required: false
+    in: query
+    description: Session user id. Default A2A_USER_{session_id}
+session_id:
+  in: path
+  as: session_id
+endpoints:
+  session:
+    method: GET
+    path: /api/sessions/{session_id}
+    query:
+      - user_id

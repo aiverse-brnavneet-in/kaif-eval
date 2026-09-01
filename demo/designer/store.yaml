@@ -1,0 +1,6 @@
+# Architecture POC — concrete store connection.
+store:
+  connection:
+    url: ${KAIF_EVAL_STORE_URL:-}
+    path: ${KAIF_EVAL_DB:-/tmp/kaif-eval.db}
+  driver: ${STORE_DRIVER:-sqlite}

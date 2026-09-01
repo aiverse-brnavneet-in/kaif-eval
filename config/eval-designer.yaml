@@ -1,0 +1,36 @@
+# Eval designer — mother composition file (template).
+# Binds: session_id, labels, connectors, sources, store+schema, worker, policies.
+# Future surfaces: UI wizard, Kubernetes EvalDesigner CRD (apiVersion/kind below).
+
+apiVersion: kaif.dev/v1alpha1
+kind: EvalDesigner
+metadata:
+  name: ${EVAL_DESIGNER_NAME:-default}
+  namespace: ${EVAL_DESIGNER_NAMESPACE:-}
+
+designer:
+  files:
+    - designer/session_id.yaml
+    - designer/labels.yaml
+    - designer/fetch.yaml
+    - designer/store.yaml
+    - designer/evidence.yaml
+    - designer/worker.yaml
+    - designer/prerequisites.yaml
+
+connectors:
+  include: []
+  files:
+    - connectors/kagent.yaml
+    - connectors/jaeger.yaml
+    - connectors/prometheus.yaml
+    - connectors/gitea.yaml
+    - connectors/api.yaml
+    - connectors/llm.yaml
+
+# Source instances: config/sources/*.yaml are templates — bind in demo or your overlay.
+sources:
+  files: []
+
+policies:
+  files: []

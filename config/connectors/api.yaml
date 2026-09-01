@@ -1,0 +1,35 @@
+name: api
+description: Generic HTTP API. Source supplies method, path, query, headers, and auth.
+protocol: http
+auth:
+  type: none
+  allowed: [none, bearer, token, basic, header]
+connection:
+  url:
+    required: true
+    description: API base URL
+headers:
+  Accept: application/json
+parameters:
+  - name: method
+    required: false
+    default: GET
+  - name: path
+    required: false
+    description: Path under the base URL. $session_id is substituted
+  - name: query
+    required: false
+    description: Query string map. Values may contain $session_id
+  - name: body
+    required: false
+  - name: timeout_s
+    required: false
+    default: 20
+  - name: correlation_header
+    required: false
+    description: Optional header name to pass session_id (set in designer fetch.by_connector.api)
+session_id:
+  in: header
+  header: ${CORRELATION_HEADER:-}
+  also_in: path_and_query
+  placeholder: $session_id

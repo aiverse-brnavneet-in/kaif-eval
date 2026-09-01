@@ -1,0 +1,8 @@
+name: prometheus-metrics
+connector: prometheus
+tags:
+  - metrics
+auth:
+  type: none
+connection:
+  url: ${PROMETHEUS_URL:-}

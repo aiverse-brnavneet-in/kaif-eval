@@ -1,0 +1,20 @@
+name: judge-llm
+connector: llm
+tags:
+  - judge
+  - quality
+auth:
+  type: bearer
+  token: ${KAIF_EVAL_LLM_KEY:-}
+connection:
+  url: ${KAIF_EVAL_LLM_URL:-}
+parameters:
+  enabled: true
+  model: ${KAIF_EVAL_LLM_MODEL:-}
+  token_limit: 8000
+  timeout_s: 120
+  rates_usd_per_million:
+    input: 0.80
+    output: 2.5234
+headers:
+  X-Kaif-Tool: llm-eval

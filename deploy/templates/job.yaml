@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "kaif-eval.fullname" . }}-run
+  labels:
+    app.kubernetes.io/name: {{ include "kaif-eval.name" . }}
+spec:
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "kaif-eval.name" . }}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["kaif-eval"]
+          args:
+            - "--config"
+            - {{ .Values.config.path | quote }}
+            - "--job-id"
+            - $(JOB_ID)
+          env:
+            - name: JOB_ID
+              value: {{ .Values.jobId | default "" | quote }}
+            - name: KAIF_EVAL_STORE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.evalStore.existingSecret.name }}
+                  key: {{ .Values.evalStore.existingSecret.key }}
+            - name: JAEGER_URL
+              value: {{ .Values.connectors.jaegerUrl | quote }}
+            - name: KAIF_EVAL_LLM_URL
+              value: {{ .Values.judge.llmUrl | quote }}
+          volumeMounts:
+            - name: config
+              mountPath: /etc/kaif-eval
+              readOnly: true
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "kaif-eval.fullname" . }}-config

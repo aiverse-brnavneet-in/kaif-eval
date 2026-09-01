@@ -1,0 +1,2 @@
+# Product shim — core connectors/sources only. Add policies or include demo/eval.yaml.
+include: eval-designer.yaml

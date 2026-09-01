@@ -1,0 +1,10 @@
+apiVersion: v2
+name: kaif-eval
+description: KAIF eval worker — score one session_id from configured sources into the eval store.
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - kaif
+  - eval
+  - observability

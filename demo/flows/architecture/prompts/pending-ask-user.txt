@@ -1,0 +1,10 @@
+Design a greenfield architecture for multi-tenant document search.
+Catalog scenario: new_architecture.
+
+Hard rules:
+- You MUST call ask_user with exactly one blocking question: which cloud
+  region is in-scope (this changes data residency and the design). Do not
+  guess the region.
+- After ask_user, call store_run_record with status BLOCKED_ON_USER,
+  flow=architecture, agent=software-architect, scenario=new_architecture.
+- Do not call store_report. Stop after ask_user.
